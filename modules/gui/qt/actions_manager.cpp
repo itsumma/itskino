@@ -116,6 +116,12 @@ void ActionsManager::doAction( int id_action )
             if( p_intf->p_sys->p_mi )
                 p_intf->p_sys->p_mi->getFullscreenControllerWidget()->toggleFullwidth();
             break;
+        //=> ITS
+        case ITS_SHARE_ACTION:
+            itsShare(); break;
+        case ITS_DEBUG_ACTION:
+            itsDebug(); break;
+        //<= ITS
         default:
             msg_Warn( p_intf, "Action not supported: %i", id_action );
             break;
@@ -132,6 +138,16 @@ void ActionsManager::play()
     }
     THEMIM->togglePlayPause();
 }
+
+//=> ITS
+void ActionsManager::itsShare() {
+    THEMIM->itsShare();
+}
+
+void ActionsManager::itsDebug() {
+    THEMIM->itsDebug();
+}
+//<= ITS
 
 /**
  * TODO

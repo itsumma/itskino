@@ -75,6 +75,10 @@
 #include <vlc_actions.h>                    /* Wheel event */
 #include <vlc_vout_display.h>               /* vout_thread_t and VOUT_ events */
 
+//=> ITS
+#include "its/its_share_service.hpp"
+//<= ITS
+
 // #define DEBUG_INTF
 
 /* Callback prototypes */
@@ -1662,10 +1666,16 @@ void MainInterface::wheelEvent( QWheelEvent *e )
 void MainInterface::closeEvent( QCloseEvent *e )
 {
 //  hide();
+
+    //=> ITS
+    its::ShareService::getInstance()->forceStopSession( "" );
+    //<= ITS
+
     if ( b_minimalView )
         setMinimalView( false );
     emit askToQuit(); /* ask THEDP to quit, so we have a unique method */
     /* Accept session quit. Otherwise we break the desktop mamager. */
+
     e->accept();
 }
 

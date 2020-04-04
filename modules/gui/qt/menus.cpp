@@ -56,6 +56,10 @@
 #include <QSignalMapper>
 #include <QStatusBar>
 
+//=> ITS
+#include "its/its_share_service.hpp"
+//<= ITS
+
 /*
   This file defines the main menus and the pop-up menu (right-click menu)
   and the systray menu (in that order in the file)
@@ -330,6 +334,10 @@ void VLCMenuBar::createMenuBar( MainInterface *mi,
 
     addMenuToMainbar( FileMenu( p_intf, bar, mi ), qtr( "&Media" ), bar );
 
+    //=> ITS
+    addMenuToMainbar( ITSKinoMenu( p_intf, bar ), qtr( "ITSKino" ), bar );
+    //<= ITS
+
     /* Dynamic menus, rebuilt before being showed */
     BAR_DADD( NavigMenu( p_intf, bar ), qtr( "P&layback" ), 3 );
     BAR_DADD( AudioMenu( p_intf, bar ), qtr( "&Audio" ), 1 );
@@ -406,6 +414,34 @@ QMenu *VLCMenuBar::FileMenu( intf_thread_t *p_intf, QWidget *parent, MainInterfa
         ":/menu/exit.svg", SLOT( quit() ), "Ctrl+Q" );
     return menu;
 }
+
+//=> ITS
+QMenu *VLCMenuBar::ITSKinoMenu( intf_thread_t *p_intf, QWidget *parent )
+{
+    QMenu *menu = new QMenu( parent );
+    QAction *action;
+
+    /* Share current video */
+    action = addMIMStaticEntry( p_intf, menu, qtr( _("Share current video") ),
+            ":/toolbar/its_share.png", SLOT( itsShare() ), true );
+    action->setEnabled( true );
+
+    /* Set sync directory without icon */
+    action = addMIMStaticEntry( p_intf, menu, qtr( _("Set sync directory") ),
+            "", SLOT( itsSetSyncDirectory() ), true );
+    action->setEnabled( true );
+
+    menu->addSeparator();
+
+    /* Play tutorial video  */
+    action = addMIMStaticEntry( p_intf, menu, qtr( _("Play tutorial video") ),
+            "", SLOT( itsPlayTutorialVideo() ), true );
+    action->setEnabled( true );
+
+    return menu;
+}
+
+//<= ITS
 
 /**
  * Tools, like Media Information, Preferences or Messages

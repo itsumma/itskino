@@ -2721,7 +2721,7 @@ static input_source_t *InputSourceNew( input_thread_t *p_input,
 
     if( in->p_demux == NULL )
     {
-        if( !b_in_can_fail && !input_Stopped( p_input ) )
+        if( !b_in_can_fail && !input_Stopped( p_input ) && strcasecmp( psz_access, "itsshare" ) != 0 )
             vlc_dialog_display_error( p_input, _("Your input can't be opened"),
                                       _("VLC is unable to open the MRL '%s'."
                                       " Check the log for details."), psz_mrl );

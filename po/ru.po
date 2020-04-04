@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: vlc 3.0.9\n"
 "Report-Msgid-Bugs-To: vlc-devel@videolan.org\n"
 "POT-Creation-Date: 2020-03-24 21:54+0100\n"
-"PO-Revision-Date: 2020-01-20 11:07+0100\n"
+"PO-Revision-Date: 2020-05-25 17:20+0800\n"
 "Last-Translator: Viktor <kichnap@gmail.com>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/yaron/teams/16553/ru/)\n"
 "Language: ru\n"
@@ -25,6 +25,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Poedit 2.3.1\n"
 
 #: include/vlc_common.h:1044
 msgid ""
@@ -29778,6 +29779,46 @@ msgstr "AAAA; "
 #: modules/gui/qt/ui/vlm.h:299
 msgid "Media Manager List"
 msgstr "Список настроек медиаменеджера"
+
+# => ITS
+
+msgid "Share link copied to clipboard"
+msgstr "Инвайт-ссылка скопирована в буфер обмена"
+
+msgid "Share current video"
+msgstr "Поделиться текущим видео"
+
+msgid "Set sync directory"
+msgstr "Указать директорию синхронизации"
+
+msgid "Play tutorial video"
+msgstr "Показать обучающее видео"
+
+msgid "You are trying to restart playing stream"
+msgstr "Данная сессия уже активна"
+
+msgid "Shared file not found"
+msgstr "Указанный файл отсутствует в директории синхронизации"
+
+msgid "Sync directory not set"
+msgstr "Не указана директория синхронизации"
+
+msgid "Stream not found"
+msgstr "Сеанс не найден"
+
+msgid "Something went wrong. Please try again later"
+msgstr "Что-то пошло не так. Пожалуйста попытайтесь позже"
+
+msgid "Stream is running. Please stop current stream to init a new one"
+msgstr "Пожалуйста, завершите текущий стрим , чтобы создать новый"
+
+msgid "Please wait..."
+msgstr "Подождите..."
+
+msgid "No video to share"
+msgstr "Не выбрано видео для совместного просмотра"
+
+# <= ITS
 
 #~ msgid "QTSound"
 #~ msgstr "QTSound"

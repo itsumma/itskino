@@ -62,6 +62,9 @@
         <file alias="space.svg">pixmaps/space.svg</file>
         <file alias="slower2.svg">pixmaps/slower2.svg</file>
         <file alias="faster2.svg">pixmaps/faster2.svg</file>
+        <file alias="its_share.png">pixmaps/its_share.png</file>
+        <file alias="its_debug.png">pixmaps/its_debug.png</file>
+        <file alias="its_loading.gif">pixmaps/its_loading.gif</file>
     </qresource>
     <qresource prefix="/buttons/playlist">
         <file alias="playlist_add.svg">pixmaps/playlist/add.svg</file>

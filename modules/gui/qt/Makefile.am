@@ -142,6 +142,11 @@ libqt_plugin_la_SOURCES = \
 	gui/qt/util/qvlcapp.hpp \
 	gui/qt/util/singleton.hpp \
 	gui/qt/util/imagehelper.cpp gui/qt/util/imagehelper.hpp \
+	gui/qt/its/its_base.cpp gui/qt/its/its_base.hpp \
+	gui/qt/its/its_dialogs_service.cpp gui/qt/its/its_dialogs_service.hpp \
+	gui/qt/its/its_request.cpp gui/qt/its/its_request.hpp \
+	gui/qt/its/its_api.cpp gui/qt/its/its_api.hpp \
+	gui/qt/its/its_share_service.cpp gui/qt/its/its_share_service.hpp \
 	gui/qt/styles/seekstyle.cpp gui/qt/styles/seekstyle.hpp
 if HAVE_WIN32
 libqt_plugin_la_SOURCES += \
@@ -229,6 +234,11 @@ nodist_libqt_plugin_la_SOURCES = \
 	gui/qt/util/buttons/RoundButton.moc.cpp \
 	gui/qt/util/buttons/DeckButtonsLayout.moc.cpp \
 	gui/qt/util/buttons/BrowseButton.moc.cpp \
+	gui/qt/its/its_dialogs_service.moc.cpp \
+	gui/qt/its/its_base.moc.cpp \
+	gui/qt/its/its_request.moc.cpp \
+	gui/qt/its/its_api.moc.cpp \
+	gui/qt/its/its_share_service.moc.cpp \
 	gui/qt/styles/seekstyle.moc.cpp
 
 if HAVE_WIN32

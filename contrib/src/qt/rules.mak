@@ -10,7 +10,7 @@ ifdef HAVE_WIN32
 PKGS += qt
 endif
 
-ifeq ($(call need_pkg,"Qt5Core Qt5Gui Qt5Widgets"),)
+ifeq ($(call need_pkg,"Qt5Core Qt5Gui Qt5Widgets, Qt5Network"),)
 PKGS_FOUND += qt
 endif
 
@@ -41,9 +41,10 @@ QT_PLATFORM := -xplatform $(QT_SPEC) -device-option CROSS_COMPILE=$(HOST)-
 endif
 
 QT_CONFIG := -static -opensource -confirm-license -no-pkg-config \
-	-no-sql-sqlite -no-gif -qt-libjpeg -no-openssl -no-opengl -no-dbus \
+	-no-sql-sqlite -qt-libjpeg -no-opengl -no-dbus \
 	-no-qml-debug -no-audio-backend -no-sql-odbc -no-pch \
-	-no-compile-examples -nomake examples
+	-no-compile-examples -nomake examples \
+	-openssl-linked -I/usr/local/ssl/include -L/usr/local/ssl/lib
 
 ifndef WITH_OPTIMIZATION
 QT_CONFIG += -debug
@@ -55,7 +56,7 @@ endif
 	cd $< && ./configure $(QT_PLATFORM) $(QT_CONFIG) -prefix $(PREFIX)
 	# Make && Install libraries
 	cd $< && $(MAKE)
-	cd $</src && $(MAKE) sub-corelib-install_subtargets sub-gui-install_subtargets sub-widgets-install_subtargets sub-platformsupport-install_subtargets sub-zlib-install_subtargets sub-bootstrap-install_subtargets
+	cd $</src && $(MAKE) sub-corelib-install_subtargets sub-gui-install_subtargets sub-widgets-install_subtargets sub-platformsupport-install_subtargets sub-zlib-install_subtargets sub-bootstrap-install_subtargets sub-network-install_subtargets
 	# Install tools
 	cd $</src && $(MAKE) sub-moc-install_subtargets sub-rcc-install_subtargets sub-uic-install_subtargets
 	# Install plugins
@@ -67,7 +68,7 @@ endif
 	# Clean Qt mess
 	rm -rf $(PREFIX)/lib/libQt5Bootstrap*
 	# Fix .pc files to remove debug version (d)
-	cd $(PREFIX)/lib/pkgconfig; for i in Qt5Core.pc Qt5Gui.pc Qt5Widgets.pc; do sed -i -e 's/d\.a/.a/g' -e 's/d $$/ /' $$i; done
+	cd $(PREFIX)/lib/pkgconfig; for i in Qt5Core.pc Qt5Gui.pc Qt5Network.pc Qt5Widgets.pc; do sed -i -e 's/d\.a/.a/g' -e 's/d $$/ /' $$i; done
 	# Fix Qt5Gui.pc file to include qwindows (QWindowsIntegrationPlugin) and Qt5Platform Support
 	cd $(PREFIX)/lib/pkgconfig; sed -i -e 's/ -lQt5Gui/ -lqwindows -lQt5PlatformSupport -lQt5Gui/g' Qt5Gui.pc
 ifdef HAVE_CROSS_COMPILE

@@ -101,6 +101,10 @@ private:
     /* All main Menus */
     static QMenu *FileMenu( intf_thread_t *, QWidget *, MainInterface * mi = NULL );
 
+    //=> ITS
+    static QMenu *ITSKinoMenu( intf_thread_t *, QWidget *);
+    //<= ITS
+
     static QMenu *ToolsMenu( intf_thread_t *, QMenu * );
     static QMenu *ToolsMenu( intf_thread_t * p_intf, QWidget *parent )
         { return ToolsMenu( p_intf, new QMenu( parent ) ); }

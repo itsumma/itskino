@@ -53,3 +53,7 @@ build*
 contrib-*
 install-*
 
+.vscode/*
+contrib/*
+win32/*
+

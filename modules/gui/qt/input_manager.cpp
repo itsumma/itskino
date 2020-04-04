@@ -41,6 +41,10 @@
 #include <QSignalMapper>
 #include <QMessageBox>
 
+//=> ITS
+#include "its/its_share_service.hpp"
+//<= ITS
+
 #include <assert.h>
 
 static int InputEvent( vlc_object_t *, const char *,
@@ -98,6 +102,7 @@ void InputManager::setInput( input_thread_t *_p_input )
 {
     delInput();
     p_input = _p_input;
+
     if( p_input != NULL )
     {
         msg_Dbg( p_intf, "IM: Setting an input" );
@@ -321,6 +326,10 @@ int MainInputManager::ItemChanged( vlc_object_t *, const char *,
     InputManager *im = (InputManager*)param;
     input_item_t *p_item = static_cast<input_item_t *>(val.p_address);
 
+    // //=> ITS
+    its::ShareService::getInstance()->handleItemChanged(p_item);
+    // //<= ITS
+
     IMEvent *event = new IMEvent( IMEvent::ItemChanged, p_item );
     QApplication::postEvent( im, event );
     return VLC_SUCCESS;
@@ -485,6 +494,9 @@ void InputManager::UpdateStatus()
     {
         i_old_playing_status = state;
         emit playingStatusChanged( state );
+        //=> ITS
+        its::ShareService::getInstance()->handleUpdateStatus(state);
+        //<= ITS
     }
 }
 
@@ -1067,7 +1079,6 @@ void MainInputManager::customEvent( QEvent *event )
 
     PLEvent *plEv;
 
-    // msg_Dbg( p_intf, "New MainIM Event of type: %i", type );
     switch( type )
     {
     case PLEvent::PLItemAppended:
@@ -1103,7 +1114,7 @@ void MainInputManager::probeCurrentInput()
 /* Playlist Control functions */
 void MainInputManager::stop()
 {
-   playlist_Stop( THEPL );
+    playlist_Stop( THEPL );
 }
 
 void MainInputManager::next()
@@ -1128,6 +1139,28 @@ void MainInputManager::togglePlayPause()
 {
     playlist_TogglePause( THEPL );
 }
+
+//=> ITS
+void MainInputManager::itsSetSyncDirectory()
+{
+    its::ShareService::getInstance()->handleSetSyncDirectory();
+}
+
+void MainInputManager::itsPlayTutorialVideo()
+{
+    its::ShareService::getInstance()->handlePlayTutorialVideo();
+}
+
+void MainInputManager::itsShare()
+{
+    its::ShareService::getInstance()->handleShare();
+}
+
+void MainInputManager::itsDebug()
+{
+    its::ShareService::getInstance()->handleDebug();
+}
+//<= ITS
 
 void MainInputManager::play()
 {
@@ -1203,6 +1236,11 @@ bool MainInputManager::hasEmptyPlaylist()
     playlist_Lock( THEPL );
     bool b_empty = playlist_IsEmpty( THEPL );
     playlist_Unlock( THEPL );
+
+    //=> ITS
+    its::ShareService::getInstance()->handleNeedPlayTutorialVideo( b_empty );
+    //<= ITS
+
     return b_empty;
 }
 

@@ -237,6 +237,16 @@ QWidget *AbstractController::createWidget( buttonType_e button, int options )
     QWidget *widget = NULL;
     switch( button )
     {
+    //=> ITS
+    case ITS_SHARE_BUTTON: {
+        NORMAL_BUTTON( ITS_SHARE );
+        }
+        break;
+    case ITS_DEBUG_BUTTON: {
+        NORMAL_BUTTON( ITS_DEBUG );
+        }
+        break;
+    //<= ITS
     case PLAY_BUTTON: {
         PlayButton *playButton = new PlayButton;
         setupButton( playButton );
@@ -724,12 +734,14 @@ ControlsWidget::ControlsWidget( intf_thread_t *_p_i,
 
     QString line1 = getSettings()->value( "MainWindow/MainToolbar1", MAIN_TB1_DEFAULT )
                                         .toString();
+
     parseAndCreate( line1, controlLayout1 );
 
     QHBoxLayout *controlLayout2 = new QHBoxLayout;
     controlLayout2->setSpacing( 0 ); controlLayout2->setMargin( 0 );
     QString line2 = getSettings()->value( "MainWindow/MainToolbar2", MAIN_TB2_DEFAULT )
                                         .toString();
+
     parseAndCreate( line2, controlLayout2 );
 
     grip = new QSizeGrip( this );

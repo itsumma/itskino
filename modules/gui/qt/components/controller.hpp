@@ -35,7 +35,13 @@
 #include <QSizeGrip>
 
 #define MAIN_TB1_DEFAULT "64;39;64;38;65"
-#define MAIN_TB2_DEFAULT "0-2;64;3;1;4;64;7;9;64;10;20;19;64-4;37;65;35-4"
+//=> ITS //
+//#define MAIN_TB2_DEFAULT "0-2;64;3;1;4;64;7;9;64;10;20;19;64-4;37;65;35-4"
+//<= ITS //
+//=> ITS
+//#define MAIN_TB2_DEFAULT "0-2;64;3;1;4;64;7;9;64;10;20;19;64;26;27;64-4;37;65;35-4" // with debug icon
+#define MAIN_TB2_DEFAULT "0-2;64;3;1;4;64;7;9;64;10;20;19;64;26;64-4;37;65;35-4" // without debug icon
+//<= ITS
 #define ADV_TB_DEFAULT "12;11;13;14"
 #define INPT_TB_DEFAULT "43;33-4;44"
 #define FSC_TB_DEFAULT "0-2;64;3;1;4;64;37;64;38;64;8;65;25;35-4;34"
@@ -81,6 +87,10 @@ typedef enum buttonType_e
     NEXT_BUTTON,
     OPEN_SUB_BUTTON,
     FULLWIDTH_BUTTON,
+    //=> ITS
+    ITS_SHARE_BUTTON,
+    ITS_DEBUG_BUTTON,
+    //<= ITS
     BUTTON_MAX,
 
     SPLITTER = 0x20,
@@ -110,7 +120,10 @@ static const char* const nameL[BUTTON_MAX] = { N_("Play"), N_("Stop"), N_("Open"
     N_("Record"), N_("A→B Loop"), N_("Frame By Frame"), N_("Trickplay Reverse"),
     N_("Step backward" ), N_("Step forward"), N_("Quit"), N_("Random"),
     N_("Loop / Repeat"), N_("Information"), N_("Previous"), N_("Next"),
-    N_("Open subtitles"), N_("Dock fullscreen controller")
+    N_("Open subtitles"), N_("Dock fullscreen controller"),
+    //=> ITS
+    N_("ITS_Share"), N_("ITS_Debug")
+    //<= ITS
 };
 static const char* const tooltipL[BUTTON_MAX] = { I_PLAY_TOOLTIP,
     N_("Stop playback"), N_("Open a medium"),
@@ -125,6 +138,9 @@ static const char* const tooltipL[BUTTON_MAX] = { I_PLAY_TOOLTIP,
     N_("Previous media in the playlist"), N_("Next media in the playlist"),
     N_("Open subtitle file"),
     N_("Dock/undock fullscreen controller to/from bottom of screen"),
+    //=> ITS
+    N_("Share current video"), N_("ITS_DEBUG tooltip")
+    //<= ITS
 };
 static const QString iconL[BUTTON_MAX] ={ ":/toolbar/play_b.svg", ":/toolbar/stop_b.svg",
     ":/toolbar/eject.svg", ":/toolbar/previous_b.svg", ":/toolbar/next_b.svg",
@@ -134,7 +150,10 @@ static const QString iconL[BUTTON_MAX] ={ ":/toolbar/play_b.svg", ":/toolbar/sto
     ":/toolbar/frame.svg", ":/toolbar/reverse.svg", ":/toolbar/skip_back.svg",
     ":/toolbar/skip_fw.svg", ":/toolbar/clear.svg", ":/buttons/playlist/shuffle_on.svg",
     ":/buttons/playlist/repeat_all.svg", ":/menu/info.svg",
-    ":/toolbar/previous_b.svg", ":/toolbar/next_b.svg", ":/toolbar/eject.svg", ":/toolbar/space.svg"
+    ":/toolbar/previous_b.svg", ":/toolbar/next_b.svg", ":/toolbar/eject.svg", ":/toolbar/space.svg",
+    //=> ITS
+    ":/toolbar/its_share.png", ":/toolbar/its_debug.png"
+    //<= ITS
 };
 
 enum

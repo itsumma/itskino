@@ -61,6 +61,10 @@ typedef enum actionType_e
     LOOP_ACTION,
     INFO_ACTION,
     OPEN_SUB_ACTION,
+    //=> ITS
+    ITS_SHARE_ACTION,
+    ITS_DEBUG_ACTION
+    //<= ITS
 } actionType_e;
 
 class ActionsManager : public QObject, public Singleton<ActionsManager>
@@ -99,6 +103,10 @@ public slots:
     void RendererMenuCountdown();
     void StopRendererScan();
     void RendererSelected( QAction * );
+    //=> ITS
+    void itsShare();
+    void itsDebug();
+    //<= ITS
 
 protected slots:
     void onRendererItemAdded( vlc_renderer_item_t* );

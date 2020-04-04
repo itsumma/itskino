@@ -37,6 +37,7 @@
 
 #include <QObject>
 #include <QEvent>
+
 class QSignalMapper;
 
 enum { NORMAL,    /* loop: 0, repeat: 0 */
@@ -322,6 +323,13 @@ public slots:
 
     void loopRepeatLoopStatus();
     void changeFullscreen( bool );
+
+    //=> ITS
+    void itsSetSyncDirectory();
+    void itsPlayTutorialVideo();
+    void itsShare();
+    void itsDebug();
+    //<= ITS
 
 private slots:
     void notifyRandom( bool );

@@ -51,6 +51,11 @@
 #include <vlc_plugin.h>
 #include <vlc_vout_window.h>
 
+//=> ITS
+#include "its/its_share_service.hpp"
+#include "its/its_dialogs_service.hpp"
+//<= ITS
+
 #ifdef _WIN32 /* For static builds */
  #include <QtPlugin>
 
@@ -329,6 +334,11 @@ vlc_module_begin ()
         set_capability( "vout window", 0 )
         set_callbacks( WindowOpen, WindowClose )
 
+    //=> ITS
+    add_bool( "qt-its-random-user", false,
+        "generate user guid for debug", "generate user guid for debug", false )
+    //<= ITS
+
 vlc_module_end ()
 
 /*****************************************/
@@ -528,6 +538,11 @@ static void *ThreadPlatform( void *obj, char *platform_name )
     QApplication::setAttribute( Qt::AA_UseHighDpiPixmaps );
 #endif
 
+    //=> ITS Initialize its services
+    its::DialogsService::getInstance( p_intf );
+    its::ShareService::getInstance( p_intf );
+    //<= ITS Initialize its services
+
     /* Start the QApplication here */
     QVLCApp app( argc, argv );
 
@@ -667,6 +682,10 @@ static void *ThreadPlatform( void *obj, char *platform_name )
        Settings must be destroyed after that.
      */
     DialogsProvider::killInstance();
+
+    //=> ITS Destroy the share service
+    its::ShareService::killInstance();
+    //<= ITS Sestroy the share service
 
     /* Delete the recentsMRL object before the configuration */
     RecentsMRL::killInstance();

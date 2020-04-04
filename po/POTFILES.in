@@ -743,6 +743,18 @@ modules/gui/qt/util/timetooltip.cpp
 modules/gui/qt/util/timetooltip.hpp
 modules/gui/qt/util/validators.cpp
 modules/gui/qt/util/validators.hpp
+# => its
+modules/gui/qt/its/its_base.cpp
+modules/gui/qt/its/its_base.hpp
+modules/gui/qt/its/its_request.cpp
+modules/gui/qt/its/its_request.hpp
+modules/gui/qt/its/its_api.cpp
+modules/gui/qt/its/its_api.hpp
+modules/gui/qt/its/its_dialogs_service.cpp
+modules/gui/qt/its/its_dialogs_service.hpp
+modules/gui/qt/its/its_share_service.cpp
+modules/gui/qt/its/its_share_service.hpp
+# <= its
 modules/gui/skins2/commands/async_queue.cpp
 modules/gui/skins2/commands/async_queue.hpp
 modules/gui/skins2/commands/cmd_add_item.cpp
